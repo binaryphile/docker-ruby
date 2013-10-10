@@ -1,4 +1,4 @@
-FROM binaryphile/ruby
+FROM ubuntu:precise
 
 MAINTAINER Ted Lilley <ted.lilley@gmail.com>
 
