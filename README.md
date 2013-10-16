@@ -4,7 +4,8 @@
 
 Creates a Docker image with Ruby, rubygems and bundler.
 
-You can use my image by running:
+Before you go building 2.0.0-p247, you can already use my image by
+running:
 
     docker pull binaryphile/ruby:2.0.0-p247
 
