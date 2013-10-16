@@ -1,2 +1,5 @@
 ruby-install-*
+src/
+.bashrc
+.bash_history
 

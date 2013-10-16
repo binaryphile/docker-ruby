@@ -1,13 +1,13 @@
 ROOT=/root
+RUBY_VERSION=2.0.0-p247
+RI_VERSION=0.3.0
 SOURCE_LIST="-o Dir::Etc::SourceList=./sources.list"
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get $SOURCE_LIST update
-apt-get install -y git wget build-essential
-wget -O ruby-install-0.3.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.3.0.tar.gz
-tar -xzvf ruby-install-0.3.0.tar.gz
-cd ruby-install-0.3.0 && make install
-ruby-install -i /usr/local/ ruby 2.0.0-p247
+apt-get install -y git build-essential
+cd ruby-install-$RI_VERSION && make install
+ruby-install -i /usr/local/ ruby $RUBY_VERSION
 gem update --system
 gem install bundler
 
