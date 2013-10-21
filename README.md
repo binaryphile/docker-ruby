@@ -11,25 +11,29 @@ running:
 
 ## Usage
 
-Edit `prep.sh`, `build.sh` and `install.sh` for your particular
-variables.  Usually just Ruby version and the desired repo/tag names,
-and perhaps Ubuntu version.
+- Copy `sample.env` to `.env`
+- Edit `.env` and set:
+  - **RUBY_VERSION**: the version of Ruby you want to install including
+  patch level, e.g. 2.0.0-p247
+  - **RI_VERSION**: the version of [ruby-install] to use
+  - **CR_VERSION**: the version of [chruby] to use
+- run `./dockerfile` and wait for it to finish
+- determine the id of the finished container with `docker ps -l` (use
+sudo if need be)
+- (optional) commit the image: `docker commit [id]
+[your-index-name]/[your-repo-name][:optional tag]`
+- (optional) push your image: `docker push
+[your-index-name]/[your-repo-name]`
 
-Run `prep.sh` in this directory (on the host) to get ruby-install and
-unpack it.
+## Contents
 
-Before you run `build.sh`, find
-`ruby-install-(version)/share/ruby-install/functions` and edit out the
-first few lines which set the source dir and install dir for uid 0.
-This will prevent the source from being put in the image.  You want the
-source dir set to $HOME/src.  The install dir doesn't matter, it'll be
-overwritten by the next install script.
+The resulting image will contain a ruby interpreter installed in
+/opt/rubies/[version], according to the [ruby-install] method.
 
-Run `build.sh`.  It will start an Ubuntu container and run `install.sh`
-for you inside the container.  `install.sh` will build the specified
-version of Ruby, then install rubygems and bundler.
+You will want to run [chruby] before trying to use ruby in the
+container.  You'll need to do this any time you create a ruby process
+inside the container.  The standard way is two commands:
 
-Finally, `build.sh` will commit the created image.
-
-You may want to push your image when you're done.
+- `source /usr/local/share/chruby/chruby.sh`
+- `chruby [version]`, e.g. `chruby 2.0`
 

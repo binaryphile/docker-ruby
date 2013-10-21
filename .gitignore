@@ -1,5 +1,7 @@
-ruby-install-*
-src/
-.bashrc
-.bash_history
+/ruby-install-*/
+/chruby-*/
+/src/
+/.bashrc
+/.bash_history
+/.env
 
