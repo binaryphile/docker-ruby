@@ -28,7 +28,7 @@ sudo if need be)
 ## Contents
 
 The resulting image will contain a ruby interpreter installed in
-/opt/rubies/[version], according to the [ruby-install] method.
+`/opt/rubies/[version]`, according to the [ruby-install] method.
 
 You will want to run [chruby] before trying to use ruby in the
 container.  You'll need to do this any time you create a ruby process
@@ -36,4 +36,7 @@ inside the container.  The standard way is two commands:
 
 - `source /usr/local/share/chruby/chruby.sh`
 - `chruby [version]`, e.g. `chruby 2.0`
+
+[chruby]: https://github.com/postmodern/chruby
+[ruby-install]: https://github.com/postmodern/ruby-install
 
