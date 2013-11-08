@@ -9,6 +9,10 @@ running:
 
     docker pull binaryphile/ruby:2.0.0-p247
 
+Also, before you ask where the Dockerfile is, there isn't one.
+`dockerfile.sh` is a shell script which performs the steps that a
+Dockerfile would, which is why it is named that way.
+
 ## Usage
 
 - Copy `sample.env` to `.env`
