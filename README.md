@@ -13,6 +13,10 @@ Also, before you ask where the Dockerfile is, there isn't one.
 `dockerfile.sh` is a shell script which performs the steps that a
 Dockerfile would, which is why it is named that way.
 
+The image is meant to be reusable, so you should only need to build a
+new image if you need a version of ruby other than 2.0.0-p247, otherwise
+you should just use mine.
+
 ## Usage
 
 - Copy `sample.env` to `.env`
@@ -20,7 +24,6 @@ Dockerfile would, which is why it is named that way.
   - **RUBY_VERSION**: the version of Ruby you want to install including
   patch level, e.g. 2.0.0-p247
   - **RI_VERSION**: the version of [ruby-install] to use
-  - **CR_VERSION**: the version of [chruby] to use
 - run `./dockerfile` and wait for it to finish
 - determine the id of the finished container with `docker ps -l` (use
 sudo if need be)
@@ -32,15 +35,10 @@ sudo if need be)
 ## Contents
 
 The resulting image will contain a ruby interpreter installed in
-`/opt/rubies/[version]`, according to the [ruby-install] method.
+`/usr/local` that will be on your regular path, so you'll have access to
+ruby, gem, etc.  If you are running bundler as a regular user, you'll
+want to pass it the `--path [pathname]` option to tell it not to use the
+system gems, since they'll fail when running as a regular user.
 
-You will want to run [chruby] before trying to use ruby in the
-container.  You'll need to do this any time you create a ruby process
-inside the container.  The standard way is two commands:
-
-- `source /usr/local/share/chruby/chruby.sh`
-- `chruby [version]`, e.g. `chruby 2.0`
-
-[chruby]: https://github.com/postmodern/chruby
 [ruby-install]: https://github.com/postmodern/ruby-install
 
