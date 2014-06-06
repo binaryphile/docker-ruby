@@ -26,7 +26,7 @@ The image is meant to be reusable, so you should only need to build a
 new image if you need a version of ruby other than 2.0.0-p247, otherwise
 you should just use mine.
 
-## Usage
+### Usage
 
 - Copy `sample.env` to `.env`
 - Edit `.env` and set:
@@ -43,7 +43,13 @@ sudo if need be)
 - (optional) push your image: `docker push
 [your-index-name]/[your-repo-name]`
 
-## Contents
+### Troubleshooting
+
+You can uncomment the "CMD=/bin/bash" line in `.env` to make
+`dockerfile.sh` give you an interactive shell inside the container prior
+to running `install.sh`.
+
+### Contents
 
 The resulting image will contain a ruby interpreter installed in
 `/usr/local` that will be on your regular path, so you'll have access to
