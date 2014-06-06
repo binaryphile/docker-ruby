@@ -15,8 +15,8 @@ running:
 
     docker pull binaryphile/ruby:2.0.0-p247-hb
 
-**New**: Ruby 2.1.2-p95 is also now available as
-`binaryphile/ruby:2.1.2-p95`.  Enjoy.
+**New**: MRI 2.1.2 is also now available as `binaryphile/ruby:2.1.2`.
+Enjoy.
 
 Also, if you want to know where the Dockerfile is, there isn't one.
 `dockerfile.sh` is a shell script which performs the steps that a
