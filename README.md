@@ -30,11 +30,15 @@ you should just use mine.
 
 - Copy `sample.env` to `.env`
 - Edit `.env` and set:
-  - **RUBY_VERSION**: the version of Ruby you want to install including
-  patch level, e.g. 2.0.0-p247
+  - **RUBY_VERSION**: the version of Ruby you want to install, as
+  ruby-install would refer to it.  Only specify a patch level if you
+  need something other than the latest released version, e.g.
+  2.0.0-p247.  New minor revisions of Ruby generally do not include the
+  patch level in the download name and so can't include the patch level
+  here.
   - **RI_VERSION**: the version of [ruby-install] to use
 - (optional) if you have a preferred ubuntu mirror, you can change the
-line in `.env` which refers to replace "ubuntu.wikimedia.org"
+line in `.env` which refers to "ubuntu.wikimedia.org"
 - run `./dockerfile.sh` and wait for it to finish
 - determine the id of the finished container with `docker ps -l` (use
 sudo if need be)
