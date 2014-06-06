@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -e .env ]; then
   source .env
@@ -17,4 +17,3 @@ if [ ! -d $RI_PATH ]; then
   curl $RI_URL | tar -xzvf -
 fi
 docker run $OPTIONS $IMAGE $CMD
-

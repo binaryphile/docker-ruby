@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -e .env ]; then
   source .env
@@ -8,15 +8,16 @@ fi
 : ${RI_VERSION?"need to set ruby-install version RI_VERSION, see README.md"}
 
 : ${ROOT=/root}
-: ${SOURCE_LIST="-o Dir::Etc::SourceList=$ROOT/sources.list"}
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get $SOURCE_LIST update
-apt-get $SOURCE_LIST install -y git build-essential curl
+if [ -n "$MIRROR"  ]; then
+  sed -i -e "s/archive.ubuntu.com/$MIRROR/g" /etc/apt/sources.list
+fi
+apt-get update
+apt-get install -y git-core build-essential curl
 apt-get clean
 cd $ROOT/ruby-install-$RI_VERSION
 make install
 ruby-install -s $ROOT/src -i /usr/local/ ruby $RUBY_VERSION
 gem update --system
-gem install bundler
-
+gem install -f bundler rake

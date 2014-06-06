@@ -1,15 +1,24 @@
 # General-purpose Ruby Docker Image
 
-## Description
+**NOTICE:** due to the heartbleed bug, I've updated the 2.0.0-p247 image
+to the latest Ubuntu 12.04, as of June 6, 2014.  If you were using the
+old one, I strongly suggest you update your image to the new tag,
+`binaryphile/ruby:2.0.0-p247-hb`.  These files and associated images are
+provided AS-IS under the terms in the included file `LICENSE.txt`.
+
+### Description
 
 Creates a Docker image with Ruby, rubygems and bundler.
 
 Before you go building 2.0.0-p247, you can already use my image by
 running:
 
-    docker pull binaryphile/ruby:2.0.0-p247
+    docker pull binaryphile/ruby:2.0.0-p247-hb
 
-Also, before you ask where the Dockerfile is, there isn't one.
+**New**: Ruby 2.1.2-p95 is also now available as
+`binaryphile/ruby:2.1.2-p95`.  Enjoy.
+
+Also, if you want to know where the Dockerfile is, there isn't one.
 `dockerfile.sh` is a shell script which performs the steps that a
 Dockerfile would, which is why it is named that way.
 
@@ -24,7 +33,9 @@ you should just use mine.
   - **RUBY_VERSION**: the version of Ruby you want to install including
   patch level, e.g. 2.0.0-p247
   - **RI_VERSION**: the version of [ruby-install] to use
-- run `./dockerfile` and wait for it to finish
+- (optional) if you have a preferred ubuntu mirror, you can change the
+line in `.env` which refers to replace "ubuntu.wikimedia.org"
+- run `./dockerfile.sh` and wait for it to finish
 - determine the id of the finished container with `docker ps -l` (use
 sudo if need be)
 - (optional) commit the image: `docker commit [id]
@@ -41,4 +52,3 @@ want to pass it the `--path [pathname]` option to tell it not to use the
 system gems, since they'll fail when running as a regular user.
 
 [ruby-install]: https://github.com/postmodern/ruby-install
-
